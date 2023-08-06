@@ -6,6 +6,10 @@ public class Movement : MonoBehaviour
 {
     Rigidbody rb;
 
+    AudioSource audioSource;
+    bool isPlaying = false;
+
+
     [SerializeField]float mainThrust = 100;
 
     [SerializeField] float rotationThrust = 1;
@@ -14,6 +18,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
