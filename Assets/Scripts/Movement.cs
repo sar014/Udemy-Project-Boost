@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField]float mainThrust = 100;
+    [SerializeField] float rotationThrust = 1;
+
     Rigidbody rb;
 
     AudioSource audioSource;
     bool isPlaying = false;
-
-
-    [SerializeField]float mainThrust = 100;
-
-    [SerializeField] float rotationThrust = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +31,13 @@ public class Movement : MonoBehaviour
         if(Input.GetKey(KeyCode.Space))
         {
             rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+            if(!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else{
+            audioSource.Stop();
         }
     }
 
