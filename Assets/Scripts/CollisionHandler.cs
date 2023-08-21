@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ public class CollisionHandler : MonoBehaviour
 
     AudioSource audioSource;
     bool isTransitioning = false;
+    bool collisionDisabled = false;
 
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem crashParticles;
@@ -20,10 +22,28 @@ public class CollisionHandler : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    void Update() {
+
+        //Cheat Key - Moves to the next Level
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+
+        //Cheat Key - Disables collision
+        else if(Input.GetKeyDown(KeyCode.C))
+        {
+            collisionDisabled = !collisionDisabled; //Toggling between disabling and enabling collision;
+        }
+        
+    }
+
 
     void OnCollisionEnter(Collision other) 
     {
-        if (isTransitioning) { return; }
+        //isTransition is used so that after completing level or colliding with enemy, only one case operates
+        //collisionDisabled is like a cheat key. Disables collision when you click C
+        if (isTransitioning || collisionDisabled) { return; }
 
         switch (other.gameObject.tag)
         {
