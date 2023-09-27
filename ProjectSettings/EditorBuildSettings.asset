@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FlyOver.unity
     guid: 0393577839f3d4c47bf4ce3a86a4c0da
+  - enabled: 1
+    path: Assets/Scenes/FlyThrough.unity
+    guid: 775f28eca7f67a541ae73da09ee09cf3
   m_configObjects: {}
